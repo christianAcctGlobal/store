@@ -178,10 +178,24 @@ function useProductEvents({
   useDataPixel(productEvents, pixelCacheKey, loading)
 }
 
+const getTitle = (
+  titleTag: string | undefined,
+  productName: string | undefined
+) => {
+  if (titleTag) {
+    return titleTag
+  }
+  if (productName) {
+    return productName
+  }
+
+  return ''
+}
+
 function useTitle(product: Product) {
   const { getSettings } = useRuntime()
   const { titleTag = undefined, productName = undefined } = product || {}
-  let title = titleTag ?? productName ?? ''
+  let title = getTitle(titleTag, productName)
 
   const settings = getSettings(STORE_APP)
 
