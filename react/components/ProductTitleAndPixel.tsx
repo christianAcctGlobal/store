@@ -199,7 +199,7 @@ function useTitle(product: Product) {
 
   const settings = getSettings(STORE_APP)
 
-  if (settings?.removeStoreNameTitle === false) {
+  if (settings && !settings?.removeStoreNameTitle) {
     const { storeName, titleTag: storeTitleTag } = settings
     const storeData = storeName || storeTitleTag
     if (storeData) {
